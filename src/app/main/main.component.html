@@ -1,0 +1,58 @@
+<div class="flex gap-24 justify-center m-8">
+  <!-- Find by ID -->
+  <div class="flex items-center">
+    <label for="id" class="mb-2 pr-2">หมายเลขสถานที่:</label>
+    <input type="text" id="id" #id class="border p-2 rounded mr-2" />
+    <button (click)="findOne(id)" class="bg-blue-500 text-white px-4 py-2 rounded">Find</button>
+  </div>
+
+  <!-- Find by Name -->
+  <div class="flex items-center">
+    <label for="name" class="mb-2 pr-2">ค้นหาจากชื่อสถานที่:</label>
+    <input type="text" id="name" #name class="border p-2 rounded mr-2" />
+    <button (click)="searchName(name.value)" class="bg-blue-500 text-white px-4 py-2 rounded">Find</button>
+  </div>
+
+  <!-- Select Country -->
+  <div class="flex items-center">
+    <label for="selecteCountry" class="mb-2 pr-2">เลือกประเทศ:</label>
+    <select name="selecteCountry" id="selecteCountry" (change)="findSelected(selecteCountry)" #selecteCountry
+      class="border p-2 rounded mr-2">
+      <option value="" selected></option>
+      <option *ngFor="let country of getLandmarkCountry()" value="{{ country }}">{{ country }}</option>
+    </select>
+  </div>
+</div>
+
+
+
+<div class="container mx-auto max-w-screen-lg">
+  <div *ngIf="landmark; else elseBlock" class="mt-8">
+    <h2 class="text-2xl font-bold">{{ landmark.name }}</h2>
+    <h3 class="text-lg text-gray-600">{{ landmark.country }}</h3>
+    <p class="mt-4">{{ landmark.detail }}</p>
+    <a (click)="gotoDetail(landmark.idx)" class="mt-4 block">
+      <img [src]="landmark.url" alt="{{ landmark.name }}" class="rounded-lg hover:opacity-80 transition"
+        style="width: auto; height: 300px;" />
+    </a>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="flex flex-col mt-8">
+      <div *ngFor="let lm of landmarks" class="mb-8 flex flex-row bg-orange-100 rounded-lg">
+        <div class="w-[200rem]">
+          <a (click)="gotoDetail(lm.idx)" class="block">
+            <img [src]="lm.url" alt="{{ lm.name }}" class="rounded-lg hover:opacity-80 transition"
+              style="max-width: 500px; max-height: 500px; width: auto; height: auto;" />
+          </a>
+        </div>
+
+        <div class="ml-12">
+          <h2 class="text-xl font-bold">{{ lm.name }}</h2>
+          <h3 class="text-md text-gray-600">{{ lm.country }}</h3>
+          <p class="mt-2">{{ lm.detail }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

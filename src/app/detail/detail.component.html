@@ -1,0 +1,16 @@
+
+<div class="flex items-center justify-center mx-48 mt-16">
+    <div class="p-6 bg-white rounded-lg shadow-md flex flex-col items-center">
+        <img class="mt-4 rounded-lg w-[50%] h-auto" src="{{ obj.url }}" alt="Object Image" />
+
+        <h2 class="text-2xl font-bold">{{ obj.name }}</h2>
+        <h3 class="text-lg font-semibold text-gray-600">{{ obj.country }}</h3>
+        <p class="mt-2 text-gray-800">{{ obj.detail }}</p>
+
+        <button class="mt-4 px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded transition duration-300" (click)="goBack()">
+            Go Back
+        </button>
+    </div>
+</div>
+
+
